@@ -95,6 +95,7 @@ class GithubModel extends SourceModel {
 	}
 
 	private function processItems($items) {
+		$result = array();
 		foreach ($items as $item) {
 			$data = array();
 			$data['title'] = $item->title;
