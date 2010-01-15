@@ -1,4 +1,3 @@
-<?php $item = $this->item->toArray(); ?>
 <div class="github">
-	<div class="content" id="rss_<?= $item['id'] ?>"><?= $item['title'] ?></div>
+	<div class="content"><?= $this->item->getTitle(); ?></div>
 </div>

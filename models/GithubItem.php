@@ -1,6 +1,7 @@
 <?php
 /*
  *    Copyright 2008-2009 Laurent Eschenauer and Alard Weisscher
+ *    Copyright 2010 John Hobbs
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,7 +24,14 @@ class GithubItem extends SourceItem {
 
 	public function getContent() { return $this->_data['content']; }
 
-	public function getTitle() { return html_entity_decode( strip_tags( $this->_data['title'] ) ); }
+	public function getTitle() {
+		$title = str_replace(
+			$this->_data['repository'],
+			'<a href="http://github.com/' . $this->_data['repository'] . '">' . $this->_data['repository'] . '</a>',
+			html_entity_decode( strip_tags( $this->_data['title'] ) )
+		);
+		return $title;
+	}
 
 	public function getLink() { return $this->_data['link']; }
 
