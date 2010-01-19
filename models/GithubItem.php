@@ -22,7 +22,7 @@ class GithubItem extends SourceItem {
 
 	protected $_preamble = 'Github activity: ';
 
-	public function getContent() { return $this->_data['content']; }
+	public function getContent() { return str_replace( '<div class="message">', '<div class="message note">', $this->_data['content'] ); }
 
 	public function getTitle() {
 		$title = str_replace(
