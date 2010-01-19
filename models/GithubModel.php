@@ -43,7 +43,7 @@ class GithubModel extends SourceModel {
 	}
 
 	public function getAccountName() {
-		if ($name = $this->getProperty('title')) {
+		if ($name = $this->getProperty('username')) {
 			return $name;
 		}
 		else {
@@ -52,7 +52,7 @@ class GithubModel extends SourceModel {
 	}
 
 	public function getTitle() {
-		if ($name = $this->getProperty('title')) {
+		if ($name = $this->getProperty('username')) {
 			return $name;
 		}
 		else {
