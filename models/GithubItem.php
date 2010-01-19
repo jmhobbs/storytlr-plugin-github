@@ -24,7 +24,9 @@ class GithubItem extends SourceItem {
 
 	public function getContent() { return str_replace( '<div class="message">', '<div class="message note">', $this->_data['content'] ); }
 
-	public function getTitle() {
+	public function getTitle () { return $this->_data['title']; }
+
+	public function getLinkedTitle() {
 		$title = str_replace(
 			$this->_data['repository'],
 			'<a href="http://github.com/' . $this->_data['repository'] . '">' . $this->_data['repository'] . '</a>',
