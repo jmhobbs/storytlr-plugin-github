@@ -52,12 +52,7 @@ class GithubModel extends SourceModel {
 	}
 
 	public function getTitle() {
-		if ($name = $this->getProperty('username')) {
-			return $name;
-		}
-		else {
-			return $this->getServiceName();
-		}
+		return $this->getServiceName();
 	}
 
 	public function importData() {
