@@ -1,3 +1,7 @@
+# State #
+
+master head will currently __not__ work with Storytlr 0.9.2, only with my fork.  This is because of experimental changes in http requests. Please use and older commit.
+
 # What is this? #
 
 This is a plugin for the Storytlr application.  It allows you to integrate your actions on Github into the Storytlr lifestream.
