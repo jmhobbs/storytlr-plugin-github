@@ -62,22 +62,30 @@ class GithubModel extends SourceModel {
 	}
 
 	public function updateData() {
-		$url = 'http://github.com/' . $this->getProperty('username') . '.atom';
-		$wr = $this->getWebRequest( $url );
+		$url	= 'http://github.com/' . $this->getProperty('username') . '.atom';
 
-		if( ! $wr->get() ) {
-			$this->markUpdated();
-			return;
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_USERAGENT,'Storytlr/1.0');
+
+		$response = curl_exec($curl);
+		$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		curl_close ($curl);
+
+		if ($http_code != 200) {
+			throw new Stuffpress_Exception( "Github returned http status $http_code for url: $url", $http_code );
 		}
 
-		if( !( $items = simplexml_load_string( $wr->get_response_body() ) ) ) {
-			throw new Stuffpress_Exception( "Github did not return any result", 0 ); // TODO: What is this 0 and why should I care about it?
+		if (!($items = simplexml_load_string($response))) {
+			throw new Stuffpress_Exception( "Github did not return any result", 0 );
 		}
 
 		if ( count( $items->entry ) == 0 ) { return; }
 
-		$items = $this->processItems( $items->entry );
-		$this->markUpdated( $wr->get_response_last_modified(), $wr->get_response_etag() );
+		$items = $this->processItems($items->entry);
+		$this->markUpdated();
 		return $items;
 	}
 
