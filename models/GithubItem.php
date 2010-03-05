@@ -37,7 +37,7 @@ class GithubItem extends SourceItem {
 
 	public function getLink() { return $this->_data['link']; }
 
-	public function getType() { return SourceItem::LINK_TYPE; }
+	public function getType() { return SourceItem::STATUS_TYPE; }
 
 	public function getBackup() {
 		$item = array();
