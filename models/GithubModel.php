@@ -99,7 +99,7 @@ class GithubModel extends SourceModel {
 			$data['content'] = $item->content;
 			$data['link'] = $item->link['href'];
 			$data['github_id'] = $item->id;
-			$id = $this->addItem( $data, $data['published'], SourceItem::STATUS_TYPE, array( $data['repository'] ), false, false, $data['title'] );
+			$id = $this->addItem( $data, $data['published'], SourceItem::LINK_TYPE, array( $data['repository'] ), false, false, $data['title'] );
 			if ($id) $result[] = $id;
 		}
 		return $result;
